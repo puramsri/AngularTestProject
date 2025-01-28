@@ -1,0 +1,29 @@
+<div class="form">
+    <div class="imgcontainer">
+      <h1> LOGIN</h1>
+    </div>
+   
+    <div class="container" [formGroup]="loginForm">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required formControlName="username">
+      <p class="error"
+        *ngIf="loginForm.get('username')?.hasError('required') && isFormSubmitted">Username is
+        required.
+      </p>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required formControlName="password">
+      <p class="error"
+        *ngIf="loginForm.get('password')?.hasError('required') && isFormSubmitted">Password is
+        required.
+      </p>
+      <button type="submit" (click)="login()">Login</button>
+   
+    </div>
+   
+    <!-- <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div> -->
+   
+    <p>{{ loginMessage }}</p>
+  </div>
