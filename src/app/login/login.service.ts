@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ILoginResult } from './login-result.model';
+
+interface ILoginResult 
+{ loginSuccessful: boolean;
+}
 
 @Injectable({
-  providedIn: 'root'
+providedIn: 'root'
 })
+
 export class LoginService {
-
-  constructor() { }
-
-  login(username: string, password: string): Promise<ILoginResult> {
-    return new Promise((resolve) => {
-      if (username === 'user' && password === 'password') {
-        resolve({ loginSuccessful: true });
-      } else {
-        resolve({ loginSuccessful: false });
-      }
-    });
-  }
+testUsers = [
+  { username:'user', password: 'pwd'},
+  {username :'test', password: 'test'},
+  {username: 'username', password: 'password' },
+]
+constructor () { }
+login (username: string, password: string): Promise<ILoginResult> {
+return new Promise ((resolve, reject) => {
+const findUser = this.testUsers. find (user => user.username== username && user.password == password) ;
+if (findUser) {
+resolve ({ loginSuccessful: true }) ;
+} else {
+resolve ({ loginSuccessful: false });
+}
+});
+}
 }
